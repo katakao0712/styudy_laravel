@@ -8,6 +8,7 @@
     @foreach($articles as $article)
         <article>
             <h2>
+            これこれ
                 <a href="{{ url('articles', $article->id) }}">
                     {{ $article->title }}
                 </a>
