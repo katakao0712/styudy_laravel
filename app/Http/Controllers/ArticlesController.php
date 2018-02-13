@@ -1,14 +1,10 @@
-<?php
-
-namespace App\Http\Controllers;
-
+<?php namespace App\Http\Controllers;
+ 
 use App\Article;
-use App\Http\ControllersController;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;  // ①'
 
-use Illuminate\Http\Request;
-
-class ArticlesController extends Controller
-{
+class ArticlesController extends Controller {
     //
     public function index() {
         $articles = Article::all();
@@ -24,16 +20,10 @@ class ArticlesController extends Controller
  
 
 
-    public function store(Request $request) {  // ①
-        $rules = [    // ②
-            'title' => 'required|min:3',
-            'body' => 'required',
-            'published_at' => 'required|date',
-        ];
-        $this->validate($request, $rules);  // ③
+    public function store(ArticleRequest $request) {  // ①
+        // ここでの validate が不要になった
  
         Article::create($request->all());
- 
         return redirect('articles');
     }
 }
