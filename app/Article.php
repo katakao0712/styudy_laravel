@@ -24,4 +24,8 @@ class Article extends Model
         // published_at で日付ミューテーターを使う
         protected $dates = ['published_at'];
 
+    public function scopePublished($query) {
+        $query->where('published_at', '<=', Carbon::now());
+    }
+
 }
